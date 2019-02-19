@@ -1,0 +1,1 @@
+web: java -jar target/desenvolvimento-web-senac-1.0.jar
