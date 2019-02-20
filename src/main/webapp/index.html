@@ -1,11 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
     <head>
-        <title>Hello World - HTML</title>
+        <meta charset="UTF-8" >
+        <title>Cadastro Cliente</title>
     </head>
 
     <body>
+        <form method="post" action="/cadastro-cliente">
+            <label>Nome</label>
+            <input type="text" />
 
+            <label>CPF</label>
+            <input type="text" />
+
+            <label>Data nascimento</label>
+            <input type="text" />
+
+            <label>Endereço</label>
+            <input type="text" />
+
+            <label>Cidade</label>
+            <input type="text" />
+
+            <label>Estado</label>
+            <select size="1"></select>
+
+            <label>Ativo</label>
+            <input type="checkbox" />
+
+            <button type="submit" value="Salvar" />
+        </form>
     </body>
 </html>
