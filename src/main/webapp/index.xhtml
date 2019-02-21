@@ -1,17 +1,55 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-    
-    <f:view contentType="text/html" locale="pt" />
+      xmlns:h="http://java.sun.com/jsf/html">
 
     <head>
-        <title>Hello</title>
+        <title>Cadastro Cliente</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     </head>
 
     <body>
+        <div class="container-fluid">
+            <h:form>
+                <div class="form-group">
+                    <label>Nome</label>
+                    <h:inputText value="#{clienteControle.cliente.nome}" class="form-control" />
+                </div>
 
+                <div class="form-group">
+                    <label>CPF</label>
+                    <h:inputText  value="#{clienteControle.cliente.cpf}" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>Data nascimento</label>
+                    <h:inputText class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>Endereço</label>
+                    <h:inputText value="#{clienteControle.cliente.endereco}" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>Cidade</label>
+                    <h:inputText value="#{clienteControle.cliente.cidade}" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label>Estado</label>
+                    <h:selectOneMenu value="#{clienteControle.cliente.estado}" class="form-control"></h:selectOneMenu>
+                </div>
+
+                <div class="form-check"> 
+                    <h:selectBooleanCheckbox class="form-check-input" />
+                    <label class="form-check-label">Ativo</label>
+                </div>
+
+                <h:commandButton class="btn btn-primary" value="Salvar" action="#{clienteControle.salvarCliente}"/>
+            </h:form>
+        </div>
     </body>
 </html>
