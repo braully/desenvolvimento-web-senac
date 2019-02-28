@@ -11,11 +11,11 @@ import java.util.Date;
 public class Cliente {
    
     String nome;
-    String CPF;
+    String cpf;
     Date dataNascimento;
-    String endereço;
+    String endereco;
     String cidade;
-    String estado;
+    Estado estado;
     Boolean ativo;
 
     public Cliente() {
@@ -29,12 +29,12 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Date getDataNascimento() {
@@ -45,12 +45,12 @@ public class Cliente {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getEndereço() {
-        return endereço;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setEndereço(String endereço) {
-        this.endereço = endereço;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public String getCidade() {
@@ -61,11 +61,11 @@ public class Cliente {
         this.cidade = cidade;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
@@ -77,5 +77,8 @@ public class Cliente {
         this.ativo = ativo;
     }
     
-    
+     @Override
+    public String toString() {
+        return "Cliente{" + "nome=" + nome + ", cpf=" + cpf + ", dataNascimento=" + dataNascimento + ", endereco=" + endereco + ", cidade=" + cidade + ", estado=" + estado + ", ativo=" + ativo + '}';
+    }
 }

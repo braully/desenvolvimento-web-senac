@@ -6,13 +6,23 @@
 package com.github.braully.dws.controle;
 
 import com.github.braully.dws.modelo.Cliente;
+import com.github.braully.dws.modelo.Estado;
+import java.util.ArrayList;
+import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ClienteControle {
 
-    Cliente cliente;
-
+    
+   Cliente cliente;
+       
+    public Estado[] getListaEstados() {
+        return Estado.values();
+        
+    }
     public ClienteControle() {
         novoCliente();
     }
@@ -32,5 +42,8 @@ public class ClienteControle {
     public void salvarCliente() {
         String mensagem = " Cliente Salvo : " + cliente;
         System.out.println(mensagem);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Salvo com Sucesso!"));
     }
+
+    
 }
