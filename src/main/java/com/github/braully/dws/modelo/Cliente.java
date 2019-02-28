@@ -9,7 +9,7 @@ public class Cliente {
     Date dataNascimento;
     String endereco;
     String cidade;
-    String estado;
+    Estado estado;
     Boolean ativo;
 
     public Cliente() {
@@ -55,11 +55,11 @@ public class Cliente {
         this.cidade = cidade;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 

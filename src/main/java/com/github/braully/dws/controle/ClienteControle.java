@@ -1,6 +1,9 @@
 package com.github.braully.dws.controle;
 
 import com.github.braully.dws.modelo.Cliente;
+import com.github.braully.dws.modelo.Estado;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.springframework.stereotype.Component;
@@ -9,6 +12,10 @@ import org.springframework.stereotype.Component;
 public class ClienteControle {
 
     Cliente cliente;
+
+    public Estado[] getListaEstados() {
+        return Estado.values();
+    }
 
     public ClienteControle() {
         novoCliente();
@@ -30,5 +37,13 @@ public class ClienteControle {
         String mensagem = "Cliente Salvo: " + cliente;
         System.out.println(mensagem);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(mensagem));
+        clientes.add(cliente);
+        novoCliente();
+    }
+
+    List<Cliente> clientes = new ArrayList<>();
+
+    public List<Cliente> getClientes() {
+        return clientes;
     }
 }
