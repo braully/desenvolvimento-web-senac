@@ -3,7 +3,8 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <head>
         <title>Cadastro Cliente</title>
@@ -13,19 +14,29 @@
     <body>
         <div class="container-fluid">
             <h:form>
+                <h:messages showSummary="true" />
+
                 <div class="form-group">
                     <label>Nome</label>
-                    <h:inputText value="#{clienteControle.cliente.nome}" class="form-control" />
+                    <h:inputText value="#{clienteControle.cliente.nome}" class="form-control" 
+                                 validatorMessage="Nome é obrigatório">
+                        <f:validateRequired />
+                    </h:inputText>
                 </div>
 
                 <div class="form-group">
                     <label>CPF</label>
-                    <h:inputText  value="#{clienteControle.cliente.cpf}" class="form-control" />
+                    <h:inputText  value="#{clienteControle.cliente.cpf}" class="form-control" 
+                                  validatorMessage="CPF deve conter 11 números" >
+                        <f:validateRegex pattern="^[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}$" />
+                    </h:inputText>
                 </div>
 
                 <div class="form-group">
                     <label>Data nascimento</label>
-                    <h:inputText class="form-control" />
+                    <h:inputText value="#{clienteControle.cliente.dataNascimento}" class="form-control">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
                 </div>
 
                 <div class="form-group">
@@ -40,7 +51,36 @@
 
                 <div class="form-group">
                     <label>Estado</label>
-                    <h:selectOneMenu value="#{clienteControle.cliente.estado}" class="form-control"></h:selectOneMenu>
+                    <h:selectOneMenu value="#{clienteControle.cliente.estado}" class="form-control">
+                        <f:selectItem itemValue=" "/>
+                        <f:selectItems value="#{clienteControle.listaEstados}"/>
+                        <!--                    <f:selectItem itemValue=" "/>
+                                            <f:selectItem itemValue="Acre"/>
+                                            <f:selectItem itemValue="Alagoas"/>
+                                            <f:selectItem itemValue="Ceará"/>
+                                            <f:selectItem itemValue="Amapá"/>
+                                            <f:selectItem itemValue="Amazonas"/>
+                                            <f:selectItem itemValue="Goiás"/>
+                                            <f:selectItem itemValue="Distrito Federal"/>
+                                            <f:selectItem itemValue="Espírito Santo"/>
+                                            <f:selectItem itemValue="Maranhão"/>
+                                            <f:selectItem itemValue="Mato Grosso"/>
+                                            <f:selectItem itemValue="Mato Grosso do Sul"/>
+                                            <f:selectItem itemValue="Minas Gerais"/>
+                                            <f:selectItem itemValue="Pará"/>
+                                            <f:selectItem itemValue="Paraíba"/>
+                                            <f:selectItem itemValue="Paraná"/>
+                                            <f:selectItem itemValue="Pernambuco"/>
+                                            <f:selectItem itemValue="Piauí"/>
+                                            <f:selectItem itemValue="Rio de Janeiro"/>
+                                            <f:selectItem itemValue="Rio Grande do Norte"/>
+                                            <f:selectItem itemValue="Rondônia"/>
+                                            <f:selectItem itemValue="Roraima"/>
+                                            <f:selectItem itemValue="São Paulo"/>
+                                            <f:selectItem itemValue="Santa catarina"/>
+                                            <f:selectItem itemValue="Sergipe"/>
+                                            <f:selectItem itemValue="Tocantins"/> !-->
+                    </h:selectOneMenu>
                 </div>
 
                 <div class="form-check"> 
@@ -48,8 +88,25 @@
                     <label class="form-check-label">Ativo</label>
                 </div>
 
-                <h:commandButton class="btn btn-primary" value="Salvar" action="#{clienteControle.salvarCliente}"/>
+                <h:commandButton class="btn btn-primary" action="#{clienteControle.salvarCliente}" value="Salvar" />
             </h:form>
+
+            <h:dataTable class = "table table-striped" 
+                         value="#{clienteControle.clientes}" var="clint">
+                <h:column filterBy="#{clint.nome}">
+                    <f:facet name="header">Nome</f:facet>
+                        #{clint.nome}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">CPF</f:facet>
+                        #{clint.cpf}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Data de Nascimento</f:facet>
+                        #{clint.dataNascimento}
+                </h:column>
+            </h:dataTable>
+
         </div>
     </body>
 </html>

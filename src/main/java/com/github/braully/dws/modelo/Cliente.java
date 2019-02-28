@@ -12,7 +12,7 @@ public class Cliente {
     Date dataNascimento;
     String endereco;
     String cidade;
-    String estado;
+    Estado estado;
     Boolean ativo;
     
     public Cliente(){
@@ -58,11 +58,11 @@ public class Cliente {
         this.cidade = cidade;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
@@ -73,6 +73,11 @@ public class Cliente {
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
     }
+    
+    @Override
+    public String toString() {
+        return "Cliente{" + "nome=" + nome + ", cpf=" + cpf + ", dataNascimento=" + dataNascimento + ", endereco=" + endereco + ", cidade=" + cidade + ", estado=" + estado + ", ativo=" + ativo + '}';
+}
     
     
     
