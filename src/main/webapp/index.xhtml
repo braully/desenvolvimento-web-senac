@@ -4,109 +4,71 @@
 <html lang="pt-br"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
 
     <head>
-        <title>Cadastro Cliente</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <!--titulo-->
+        <title><ui:insert name="titulo">666</ui:insert></title>
+        <!--Bootstrap e CSS-->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+
+        <!--Custom Style-->
+        <link href="starter-template.css" rel="stylesheet"/>
     </head>
 
     <body>
-        <div class="container-fluid">
-            <h:form>
-                <h:messages showSummary="true" />
 
-                <div class="form-group">
-                    <label>Nome</label>
-                    <h:inputText value="#{clienteControle.cliente.nome}" class="form-control" 
-                                 validatorMessage="Nome é obrigatório">
-                        <f:validateRequired />
-                    </h:inputText>
-                </div>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="/home.xhtml">Rafael's</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="form-group">
-                    <label>CPF</label>
-                    <h:inputText  value="#{clienteControle.cliente.cpf}" class="form-control" 
-                                  validatorMessage="CPF deve conter 11 números" >
-                        <f:validateRegex pattern="^[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}$" />
-                    </h:inputText>
-                </div>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home.xhtml">Entrada<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/clientes.xhtml">Cadastro de Clientes<span class="sr-only"></span></a>
+                    </li>
+                    
+<!--
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                    -->
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Buscar"/>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
 
-                <div class="form-group">
-                    <label>Data nascimento</label>
-                    <h:inputText value="#{clienteControle.cliente.dataNascimento}" class="form-control">
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                    </h:inputText>
-                </div>
+        <!--Corpo da Pagina-->
+        <main role="main" class="container">
 
-                <div class="form-group">
-                    <label>Endereço</label>
-                    <h:inputText value="#{clienteControle.cliente.endereco}" class="form-control" />
-                </div>
+            <div class="starter-template">
+                <h1><ui:insert name="titulo">666</ui:insert></h1>
+            </div>
 
-                <div class="form-group">
-                    <label>Cidade</label>
-                    <h:inputText value="#{clienteControle.cliente.cidade}" class="form-control" />
-                </div>
+            <ui:insert name="corpo">
 
-                <div class="form-group">
-                    <label>Estado</label>
-                    <h:selectOneMenu value="#{clienteControle.cliente.estado}" class="form-control">
-                        <f:selectItem itemValue=" "/>
-                        <f:selectItems value="#{clienteControle.listaEstados}"/>
-                        <!--                    <f:selectItem itemValue=" "/>
-                                            <f:selectItem itemValue="Acre"/>
-                                            <f:selectItem itemValue="Alagoas"/>
-                                            <f:selectItem itemValue="Ceará"/>
-                                            <f:selectItem itemValue="Amapá"/>
-                                            <f:selectItem itemValue="Amazonas"/>
-                                            <f:selectItem itemValue="Goiás"/>
-                                            <f:selectItem itemValue="Distrito Federal"/>
-                                            <f:selectItem itemValue="Espírito Santo"/>
-                                            <f:selectItem itemValue="Maranhão"/>
-                                            <f:selectItem itemValue="Mato Grosso"/>
-                                            <f:selectItem itemValue="Mato Grosso do Sul"/>
-                                            <f:selectItem itemValue="Minas Gerais"/>
-                                            <f:selectItem itemValue="Pará"/>
-                                            <f:selectItem itemValue="Paraíba"/>
-                                            <f:selectItem itemValue="Paraná"/>
-                                            <f:selectItem itemValue="Pernambuco"/>
-                                            <f:selectItem itemValue="Piauí"/>
-                                            <f:selectItem itemValue="Rio de Janeiro"/>
-                                            <f:selectItem itemValue="Rio Grande do Norte"/>
-                                            <f:selectItem itemValue="Rondônia"/>
-                                            <f:selectItem itemValue="Roraima"/>
-                                            <f:selectItem itemValue="São Paulo"/>
-                                            <f:selectItem itemValue="Santa catarina"/>
-                                            <f:selectItem itemValue="Sergipe"/>
-                                            <f:selectItem itemValue="Tocantins"/> !-->
-                    </h:selectOneMenu>
-                </div>
+            </ui:insert>
+        </main><!-- /.container -->
 
-                <div class="form-check"> 
-                    <h:selectBooleanCheckbox class="form-check-input" />
-                    <label class="form-check-label">Ativo</label>
-                </div>
 
-                <h:commandButton class="btn btn-primary" action="#{clienteControle.salvarCliente}" value="Salvar" />
-            </h:form>
-
-            <h:dataTable class = "table table-striped" 
-                         value="#{clienteControle.clientes}" var="clint">
-                <h:column filterBy="#{clint.nome}">
-                    <f:facet name="header">Nome</f:facet>
-                        #{clint.nome}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">CPF</f:facet>
-                        #{clint.cpf}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Data de Nascimento</f:facet>
-                        #{clint.dataNascimento}
-                </h:column>
-            </h:dataTable>
-
-        </div>
     </body>
 </html>
