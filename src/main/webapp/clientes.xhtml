@@ -66,22 +66,32 @@
                     <h:commandButton action="#{clienteControle.salvarCliente}" class="btn btn-primary" value="Salvar" />
                 </h:form>
 
-                <h:dataTable class = "table table-striped" 
-                             value="#{clienteControle.clientes}" var="clint">
-                    <h:column filterBy="#{clint.nome}">
-                        <f:facet name="header">Nome</f:facet>
+                <h:form>
+                    <h:dataTable class = "table table-striped" 
+                                 value="#{clienteControle.clientes}" var="clint">
+                        <h:column filterBy="#{clint.nome}">
+                            <f:facet name="header">Nome</f:facet>
                         #{clint.nome}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">CPF</f:facet>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">CPF</f:facet>
                         #{clint.cpf}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Data de Nascimento</f:facet>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Data de Nascimento</f:facet>
                         #{clint.dataNascimento}
-                    </h:column>
-                </h:dataTable>
+                        </h:column>
+                        <h:column>
+                            <h:commandButton class="btn btn-danger" value="Excluir" title="Excluir" 
+                                              actionListener="#{clienteControle.excluirCliente(clint)}"/>
+                        </h:column>
 
+                        <h:column>
+                            <h:commandButton class="btn btn-secondary" value="Editar" title="Editar"
+                                             actionListener="#{clienteControle.setCliente(clint)}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
             </div>
 
         </ui:define>

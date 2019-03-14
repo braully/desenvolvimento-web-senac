@@ -1,15 +1,30 @@
 package com.github.braully.dws.modelo;
 
 import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Cliente {
 
+    @Id
+    @GeneratedValue
+    Integer id;
+    @Basic
     String nome;
+    @Basic
     String cpf;
+    @Basic
     Date dataNascimento;
+    @Basic
     String endereco;
+    @Basic
     String cidade;
+    @Basic
     Estado estado;
+    @Basic
     Boolean ativo;
 
     public Cliente() {
