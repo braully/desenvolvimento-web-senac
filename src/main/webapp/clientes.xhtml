@@ -62,8 +62,33 @@
                         <label class="form-check-label">Ativo</label>
                     </div>
 
-                    <h:commandButton action="#{clienteControle.salvarCliente}" class="btn btn-primary" value="Salvar" />
+                    <h:commandButton action="#{clienteControle.salvarCliente}" class="btn btn-success" value="Salvar" />
                 </h:form>
+                <h:form>
+                    <h:dataTable class = "table table-striped" 
+                                 value="#{clienteControle.clientes}" var="clint">
+                        <h:column>
+                            <f:facet name="header">Nome</f:facet>
+                                #{clint.nome}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">CPF</f:facet>
+                                #{clint.cpf}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Data de Nascimento</f:facet>
+                                #{clint.dataNascimento}
+                        </h:column>
+                        <h:column>
+                            <h:commandButton class="btn btn-danger" value="Excluir" title="Excluir"
+                                             actionListener="#{clienteControle.excluirCliente(clint)}"/>
+                        </h:column>
+                        <h:column>
+                            <h:commandButton class="btn btn-primary" value="Editar" title="Editar"
+                                             actionListener="#{clienteControle.setCliente(clint)}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>            
             </div>
         </ui:define>
     </ui:composition>

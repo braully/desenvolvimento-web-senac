@@ -6,11 +6,13 @@
 package com.github.braully.dws.controle;
 
 import com.github.braully.dws.modelo.Cliente;
+import com.github.braully.dws.modelo.ClienteDAO;
 import com.github.braully.dws.modelo.Estado;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -39,11 +41,18 @@ public class ClienteControle {
         this.cliente = new Cliente();
     }
 
+    @Autowired
+    ClienteDAO clienteDAO;
     public void salvarCliente() {
         String mensagem = " Cliente Salvo : " + cliente;
         System.out.println(mensagem);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Salvo com Sucesso!"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cliente Salvo com Sucesso!"));
+        clienteDAO.save(cliente);
+        novoCliente();
     }
-
+    public Iterable<Cliente>getClientes(){
+        return clienteDAO.findAll();
+    }
+    
     
 }

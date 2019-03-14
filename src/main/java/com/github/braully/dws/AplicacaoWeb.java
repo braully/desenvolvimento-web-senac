@@ -3,8 +3,11 @@ package com.github.braully.dws;
 import com.sun.faces.config.ConfigureListener;
 import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
+import javax.sql.DataSource;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +22,13 @@ public class AplicacaoWeb implements ServletContextAware {
 
     public static void main(String... args) {
         SpringApplication.run(AplicacaoWeb.class, args);
+    }
+
+  
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DataSource datasource() {
+        return DataSourceBuilder.create().build();
     }
 
     @Bean
