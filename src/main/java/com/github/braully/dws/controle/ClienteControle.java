@@ -1,21 +1,21 @@
 package com.github.braully.dws.controle;
 
-/**
- *
- * @author Rafael para aula de Web Braully
- */
 import com.github.braully.dws.modelo.Cliente;
 import com.github.braully.dws.modelo.Estado;
+import com.github.braully.dws.modelo.clienteDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ClienteControle {
 
     Cliente cliente;
+    @Autowired
+    clienteDAO ClienteDAO;
 
     public Estado[] getListaEstados() {
         return Estado.values();
@@ -41,13 +41,20 @@ public class ClienteControle {
         String mensagem = " Cliente Salvo : " + cliente;
         System.out.println(mensagem);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(mensagem));
-        clientes.add(cliente);
+        ClienteDAO.save(cliente);
+        System.out.println("mensagem");
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(mensagem));
         novoCliente();
     }
 
-    List<Cliente> clientes = new ArrayList<>();
-
-    public List<Cliente> getClientes() {
-        return clientes;
+    public Iterable<Cliente> getClientes() {
+        return ClienteDAO.findAll();
+    }
+    
+    public void exlcuirCliente(Cliente cliente){
+        String mensagem = "Cliente excluído" + cliente ;
+        ClienteDAO.delete(cliente);
+        System.out.println(mensagem);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(mensagem));
     }
 }
