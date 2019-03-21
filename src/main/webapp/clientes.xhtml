@@ -12,7 +12,9 @@
 
             <div class="container-fluid">
                 <h:form>
-                    <h:messages showSummary="true"  />
+                    <h:messages infoClass="alert alert-success" 
+                                errorClass="alert alert-danger" 
+                                showSummary="true"  />
 
                     <div class="form-group">
                         <label>Nome</label>
@@ -63,31 +65,31 @@
                         <label class="form-check-label">Ativo</label>
                     </div>
 
-                    <h:commandButton action="#{clienteControle.salvarCliente}" class="btn btn-primary" value="Salvar" />
+                    <h:commandButton disabled="#{not acessoUsuarioControle.logado}" action="#{clienteControle.salvarCliente}" class="btn btn-primary" value="Salvar" />
                 </h:form>
 
                 <h:form>
                     <h:dataTable class = "table table-striped" 
                                  value="#{clienteControle.clientes}" var="clint">
-                        <h:column filterBy="#{clint.nome}">
+                        <h:column>
                             <f:facet name="header">Nome</f:facet>
-                        #{clint.nome}
+                                #{clint.nome}
                         </h:column>
                         <h:column>
                             <f:facet name="header">CPF</f:facet>
-                        #{clint.cpf}
+                                #{clint.cpf}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Data de Nascimento</f:facet>
-                        #{clint.dataNascimento}
+                                #{clint.dataNascimento}
                         </h:column>
                         <h:column>
-                            <h:commandButton class="btn btn-danger" value="Excluir" title="Excluir" 
-                                              actionListener="#{clienteControle.excluirCliente(clint)}"/>
+                            <h:commandButton disabled="#{not acessoUsuarioControle.logado}"  class="btn btn-danger" value="Excluir" title="Excluir" 
+                                             actionListener="#{clienteControle.excluirCliente(clint)}"/>
                         </h:column>
 
                         <h:column>
-                            <h:commandButton class="btn btn-secondary" value="Editar" title="Editar"
+                            <h:commandButton disabled="#{not acessoUsuarioControle.logado}"  class="btn btn-secondary" value="Editar" title="Editar"
                                              actionListener="#{clienteControle.setCliente(clint)}"/>
                         </h:column>
                     </h:dataTable>

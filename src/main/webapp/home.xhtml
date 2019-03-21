@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/index.xhtml">
-        <ui:define name="titulo">Bem vindo</ui:define>
+        <ui:define name="titulo">Bem vindo #{acessoUsuarioControle.nomeUsuario}</ui:define>
         <ui:define name="corpo">
             <p class="lead">
                 Essa é a pagina de entrada do nosso sistema desenvolvido 
