@@ -1,0 +1,30 @@
+<html>
+    <body>
+        <form action="/contato">
+
+
+            Nome:<br>
+            <input type="text" name="nome"><br>
+            Email:<br>
+            <input type="text" name="email"><br>
+
+            Mensagem:<br>
+            <textarea name="mensagem"> 
+                
+            </textarea><br>
+
+
+            <p id="msg" style="color: red;"></p>
+
+            <button onclick="informaUsuario();">Enviar</button>
+
+            <script>
+                function informaUsuario() {
+                    document.getElementById("msg").innerHTML
+                            = "Sua comunicação foi recebida com sucesso," +
+                            " em breve entraremos em contato";
+                }
+            </script>
+        </form> 
+    </body>
+</html>
