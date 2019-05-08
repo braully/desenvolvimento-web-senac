@@ -6,6 +6,7 @@
 package tmp;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,11 @@ public class ContatoWebservice {
         List ret = null;
         /* Recupera contatos do banco */
         ret = new ArrayList();
-        ret.add(Map.of("id", "1", "email", "braully@gmal.com", "mensagem", "Sistema muito lento"));
+        Map map = new HashMap();
+        map.put("id", "1");
+        map.put("email", "braully@gmal.com");
+        map.put("mensagem", "Sistema muito lento");
+        ret.add(map);
         return ret;
     }
 
@@ -53,7 +58,6 @@ public class ContatoWebservice {
 //                    + "<td>" + mensagem + "</td>"
 //                    + "</tr>";
 //        }
-
         html += "        </table>"
                 + "    </body>"
                 + "</html>";
