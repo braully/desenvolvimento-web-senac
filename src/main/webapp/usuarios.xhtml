@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/index.xhtml">
+        <ui:define name="titulo">Cadastro de Usuarios</ui:define>
+        <ui:define name="corpo">
+
+            <div class="container-fluid">
+                <h:form>
+                    <h:messages infoClass="alert alert-success" 
+                                errorClass="alert alert-danger" 
+                                showSummary="true"  />
+
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <h:inputText value="#{acessoUsuarioControle.usuario.nome}" 
+                                     class="form-control"
+                                     validatorMessage="Nome é obigatorio">
+                            <f:validateRequired />
+                        </h:inputText>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <h:inputText value="#{acessoUsuarioControle.usuario.senha}" 
+                                     class="form-control"
+                                     validatorMessage="Senha é obigatorio">
+                            <f:validateRequired />
+                        </h:inputText>
+                    </div>
+                    <h:commandButton disabled="#{not acessoUsuarioControle.logado}"
+                                     action="#{acessoUsuarioControle.salvarUsuario}" 
+                                     class="btn btn-primary" value="Salvar" />
+                </h:form>
+
+                <h:form>
+                    <h:dataTable class = "table table-striped" 
+                                 value="#{acessoUsuarioControle.usuarios}" var="clint">
+                        <h:column>
+                            <f:facet name="header">Nome</f:facet>
+                                #{clint.nome}
+                        </h:column>
+
+                        <h:column>
+                            <h:commandButton disabled="#{not acessoUsuarioControle.logado}"  
+                                             class="btn btn-secondary" value="Editar" title="Editar"
+                                             actionListener="#{acessoUsuarioControle.setUsuario(clint)}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </div>
+
+        </ui:define>
+    </ui:composition>
+</html>
