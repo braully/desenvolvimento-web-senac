@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/index.xhtml">
+        <ui:define name="titulo">Entrar</ui:define>
+        <ui:define name="cabecalho"></ui:define>
+        <ui:define name="corpo">
+            <h:form class="form-signin">
+                <h:messages errorClass="alert alert-danger" showSummary="true" />
+
+                <div class="form-group">
+                    <label>Usuário</label>
+                    <h:inputText value="#{acessoUsuarioControle.nomeUsuario}" 
+                                 class="form-control"
+                                 validatorMessage="Nome de Usuário é obigatorio">
+                        <f:validateRequired />
+                    </h:inputText>
+                </div>
+
+                <div class="form-group">
+                    <label>Senha</label>
+                    <h:inputSecret value="#{acessoUsuarioControle.senha}" 
+                                   class="form-control"
+                                   validatorMessage="Senha é obigatorio">
+                        <f:validateRequired />
+                    </h:inputSecret>
+                </div>
+
+                <h:commandButton action="#{acessoUsuarioControle.entrar}" 
+                                 class="btn btn-lg btn-primary btn-block" value="Entrar" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

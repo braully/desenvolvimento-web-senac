@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" ptype="MONOLITH" ppkg="com.github.braully.dws" epkg="modelo" v="5.2" rws="_15573558469302" Pws="_15573558469302" cws="_15573558469302" persistenceUnitName="DEFAULT_PU" sm="false" xs="false" id="_15573558469291" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity compositePrimaryKeyClass="UsuarioPK" abs="false" class="Usuario" v="true" jbn="false" xre="false" m="false" rootElement="_15573558469291" id="_15573559916023">
+        <jpa:ath>strike</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="nome" id="_15573560460939">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="senha" id="_155735606989810">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:basic attribute-type="Boolean" v="true" xvt="" name="removido" id="_155735608031411">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:many-to-many own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_15573560075766" v="true" xvt="" name="papeis" id="_155735658027314">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-many>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_15573559916664">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Usuario.findAll">
+            <jpa:query>Select e from Usuario e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Usuario.findByNome">
+            <jpa:query>Select u from Usuario u where u.nome=:nome</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Usuario.findBySenha">
+            <jpa:query>Select u from Usuario u where u.senha=:senha</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Usuario.findByRemovido">
+            <jpa:query>Select u from Usuario u where u.removido=:removido</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="PapelPK" abs="false" class="Papel" v="true" jbn="false" xre="false" m="false" rootElement="_15573558469291" id="_15573560075766">
+        <jpa:ath>strike</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="nome" id="_155735609766712">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_15573560075777">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Papel.findAll">
+            <jpa:query>Select e from Papel e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Papel.findByNome">
+            <jpa:query>Select p from Papel p where p.nome=:nome</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:wsl>
+        <jpa:ws n="Main" id="_15573558469302">
+            <i ref="_15573560075766" x="297" y="71"/>
+            <i ref="_15573559916023" x="88" y="71"/>
+        </jpa:ws>
+    </jpa:wsl>
+</jpa:entity-mappings>
