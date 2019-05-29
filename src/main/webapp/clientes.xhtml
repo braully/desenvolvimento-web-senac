@@ -65,7 +65,7 @@
                         <label class="form-check-label">Ativo</label>
                     </div>
 
-                    <h:commandButton disabled="#{not acessoUsuarioControle.logado}" action="#{clienteControle.salvarCliente}" class="btn btn-primary" value="Salvar" />
+                    <h:commandButton action="#{clienteControle.salvarCliente}" class="btn btn-primary" value="Salvar" />
                 </h:form>
 
                 <h:form>
@@ -84,12 +84,12 @@
                                 #{clint.dataNascimento}
                         </h:column>
                         <h:column>
-                            <h:commandButton disabled="#{not acessoUsuarioControle.logado}"  class="btn btn-danger" value="Excluir" title="Excluir" 
+                            <h:commandButton class="btn btn-danger" value="Excluir" title="Excluir" 
                                              actionListener="#{clienteControle.excluirCliente(clint)}"/>
                         </h:column>
 
                         <h:column>
-                            <h:commandButton disabled="#{not acessoUsuarioControle.logado}"  class="btn btn-secondary" value="Editar" title="Editar"
+                            <h:commandButton class="btn btn-secondary" value="Editar" title="Editar"
                                              actionListener="#{clienteControle.setCliente(clint)}"/>
                         </h:column>
                     </h:dataTable>

@@ -13,15 +13,64 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.context.ServletContextAware;
 
 /**
  *
  * @author braully
  */
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(jsr250Enabled = true,
+        securedEnabled = true,
+        prePostEnabled = true)
 @SpringBootApplication
-public class AplicacaoWeb implements ServletContextAware {
+public class AplicacaoWeb extends WebSecurityConfigurerAdapter
+        implements ServletContextAware {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/usuarios.xhtml").hasRole("ADMIN")
+                .antMatchers("/rh/**").hasAnyRole("Recuros_Humanos", "ADMIN")
+                .anyRequest().authenticated().and()
+                .formLogin().permitAll().and()
+                .logout().permitAll();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        UserDetails user = User.withUsername("user")
+                .password(passwordEncoder().encode("user"))
+                .roles("USER").build();
+
+        UserDetails admin = User.withUsername("admin")
+                .password(passwordEncoder().encode("admin"))
+                .roles("ADMIN").build();
+
+        UserDetails braully = User.withUsername("braully")
+                .password(passwordEncoder().encode("123"))
+                .roles("ADMIN", "USER", "FODÃO").build();
+
+        return new InMemoryUserDetailsManager(user, admin, braully);
+    }
 
     public static void main(String... args) {
         SpringApplication.run(AplicacaoWeb.class, args);
