@@ -7,7 +7,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -39,7 +38,7 @@ public class ClienteControle {
     @Autowired
     ClienteDAO clienteDAO;
 
-    @Secured({"ROLE_ADMIN", "ADMIN"})
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void salvarCliente() {
         String mensagem = "Cliente Salvo: " + cliente;
         System.out.println(mensagem);

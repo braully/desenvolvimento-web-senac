@@ -13,7 +13,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,9 +31,7 @@ import org.springframework.web.context.ServletContextAware;
  * @author braully
  */
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(jsr250Enabled = true,
-        securedEnabled = true,
-        prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @SpringBootApplication
 public class AplicacaoWeb extends WebSecurityConfigurerAdapter
         implements ServletContextAware {
