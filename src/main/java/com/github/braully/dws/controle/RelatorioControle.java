@@ -17,6 +17,7 @@ import org.pentaho.reporting.engine.classic.core.DataFactory;
 import org.pentaho.reporting.engine.classic.core.MasterReport;
 import org.pentaho.reporting.engine.classic.core.ReportProcessingException;
 import org.pentaho.reporting.engine.classic.core.layout.output.AbstractReportProcessor;
+import org.pentaho.reporting.engine.classic.core.modules.misc.datafactory.sql.DriverConnectionProvider;
 import org.pentaho.reporting.engine.classic.core.modules.misc.datafactory.sql.SQLReportDataFactory;
 import org.pentaho.reporting.engine.classic.core.modules.output.pageable.base.PageableReportProcessor;
 import org.pentaho.reporting.engine.classic.core.modules.output.pageable.pdf.PdfOutputProcessor;
@@ -24,9 +25,9 @@ import org.pentaho.reporting.libraries.resourceloader.Resource;
 import org.pentaho.reporting.libraries.resourceloader.ResourceManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -42,7 +43,10 @@ public class RelatorioControle {
 
     @Autowired
     DataSource dataSource;
+    @Autowired
+    DriverConnectionProvider driverConnectionProvider;
 
+    @Transactional
     @RequestMapping("/relatorio/exemplo1")
     public ResponseEntity<org.springframework.core.io.Resource> exemplo1() throws Exception {
         //Parametros
@@ -57,9 +61,8 @@ public class RelatorioControle {
         Resource directly = resourceManager.createDirectly(reportDefinitionURL, MasterReport.class);
         MasterReport relatorioExemplo = (MasterReport) directly.getResource();
         relatorioExemplo.setQuery("ReportQuery");
-
         //Conexão para o relatório do pentaho
-        SQLReportDataFactory dataFactory = new SQLReportDataFactory(dataSource.getConnection());
+        SQLReportDataFactory dataFactory = new SQLReportDataFactory(driverConnectionProvider);
         dataFactory.setQuery("ReportQuery",
                 "select NOME, CIDADE, ESTADO, CPF, ENDERECO from CLIENTE order by UPPER(NOME)");
 

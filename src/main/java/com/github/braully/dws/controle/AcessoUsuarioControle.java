@@ -2,7 +2,6 @@ package com.github.braully.dws.controle;
 
 import com.github.braully.dws.modelo.Usuario;
 import com.github.braully.dws.modelo.UsuarioDAO;
-import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;

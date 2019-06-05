@@ -3,9 +3,12 @@ package com.github.braully.dws;
 import com.sun.faces.config.ConfigureListener;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
 import javax.sql.DataSource;
+import org.pentaho.reporting.engine.classic.core.modules.misc.datafactory.sql.DriverConnectionProvider;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
@@ -86,6 +89,19 @@ public class AplicacaoWeb extends WebSecurityConfigurerAdapter
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource datasource() {
         return DataSourceBuilder.create().build();
+    }
+
+//    private String pentahoDataSourceUser;
+//    private String pentahoDataSourcePassword;
+    @Bean
+    @ConfigurationProperties(prefix = "spring.pentaho.datasource")
+    DriverConnectionProvider connectionProvider(
+            @Value("${spring.pentaho.datasource.user}") String pentahoDataSourceUser,
+            @Value("${spring.pentaho.datasource.password}") String pentahoDataSourcePassword) {
+        DriverConnectionProvider driverConnectionProvider = new DriverConnectionProvider();
+        driverConnectionProvider.setProperty("user", pentahoDataSourceUser);
+        driverConnectionProvider.setProperty("password", pentahoDataSourcePassword);
+        return driverConnectionProvider;
     }
 
     @Bean
