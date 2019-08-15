@@ -7,15 +7,16 @@
     </head>
     <body>
 
-        <form>
+        <form action="/processar-form-contato" 
+              method="post">
             <label>Nome</label>
-            <input type="text" />
+            <input name="nome" type="text" />
 
             <label>E-mail</label>
-            <input type="email" />
+            <input name="email" type="email" />
 
             <label>Duvida</label>
-            <textarea></textarea>
+            <textarea name="duvida"></textarea>
 
             <button>Enviar</button>            
         </form>
