@@ -2,24 +2,57 @@
 <html>
     <head>
         <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="css.css" type="text/css" rel="stylesheet" />        
     </head>
     <body>
-        <table style="border: 1px solid; border-collapse: collapse;">
-            <tr style="border: 1px solid; border-collapse: collapse;">
-                <td style="border: 1px solid; border-collapse: collapse;">Produto</td>
-                <td style="border: 1px solid; border-collapse: collapse;">Descrição</td>
-                <td style="border: 1px solid; border-collapse: collapse;">Preço</td>
-            </tr>
-
+        <h1>Tabela-1</h1>
+        <table>
             <tr>
-                <td style="border: 1px solid; border-collapse: collapse;"><img style="width: 30px;" src="produtox.png"/></td>
-                <td style="border: 1px solid; border-collapse: collapse;">Produto X</td>
-                <td style="border: 1px solid; border-collapse: collapse;">R$ 1.000,00</td>
+                <th>Produto</th>
+                <th>Descrição</th>
+                <th>Preço</th>
             </tr>
+            <tr>
+                <td>
+                    <img style="width: 30px;" src="produtox.png"/>
+                </td>
+                <td>Produto X</td>
+                <td>R$ 1.000,00</td>
+            </tr>
+        </table>
 
+        <h1>Tabela-2</h1>
+        <table id="tabela-secundaria">
+            <tr>
+                <th>Produto</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+            </tr>
+            <tr>
+                <td>
+                    <img style="width: 30px;" src="produtox.png"/>
+                </td>
+                <td>Produto X</td>
+                <td>R$ 1.000,00</td>
+            </tr>
+        </table>
 
+        <h1>Tabela-3</h1>
+        <table class="tabela-destacada">
+            <tr>
+                <th>Produto</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+            </tr>
+            <tr>
+                <td>
+                    <img style="width: 30px;" src="produtox.png"/>
+                </td>
+                <td>Produto X</td>
+                <td>R$ 1.000,00</td>
+            </tr>
         </table>
     </body>
 </html>
