@@ -4,21 +4,41 @@
         <title>Contato</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     </head>
     <body>
+        <div class="row">
+            <div class="col-12">Cabeçalho</div>
+            <hr />
+        </div>        
+        
+        <div class="row">
+            <div class="col-2">
+                Menu
+            </div>
 
-        <form action="/processar-form-contato" 
-              method="post">
-            <label>Nome</label>
-            <input name="nome" type="text" />
+            <div class="col-9">
+                <form action="/processar-form-contato" 
+                      method="post">
 
-            <label>E-mail</label>
-            <input name="email" type="email" />
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input class="form-control" name="nome" type="text" />
+                    </div>
 
-            <label>Duvida</label>
-            <textarea name="duvida"></textarea>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input class="form-control" name="email" type="email" />
+                    </div>
 
-            <button>Enviar</button>            
-        </form>
+                    <div class="form-group">
+                        <label>Duvida</label>
+                        <textarea class="form-control" name="duvida"></textarea>
+                    </div>
+
+                    <button class="btn btn-outline-dark">Enviar</button>            
+                </form>
+            </div>
+        </div>
     </body>
 </html>
