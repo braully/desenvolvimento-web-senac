@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="/principal.xhtml">
+        
+        <ui:define name="titulo">Catalogo de Produtos</ui:define>
+
+       	<ui:define name="conteudo">
+            <h1>Tabela-1</h1>
+            <table class="table">
+                <tr>
+                    <th>Produto</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                </tr>
+                <tr>
+                    <td>
+                        <img style="width: 30px;" src="produtox.png"/>
+                    </td>
+                    <td>Produto X</td>
+                    <td>R$ 1.000,00</td>
+                </tr>
+            </table>
+
+            <h1>Tabela-2</h1>
+            <table class="table table-striped" id="tabela-secundaria">
+                <tr>
+                    <th>Produto</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                </tr>
+                <tr>
+                    <td>
+                        <img style="width: 30px;" src="produtox.png"/>
+                    </td>
+                    <td>Produto X</td>
+                    <td>R$ 1.000,00</td>
+                </tr>
+            </table>
+
+            <h1>Tabela-3</h1>
+            <table class="table table-bordered table-striped table-dark">
+                <tr>
+                    <th>Produto</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                </tr>
+                <tr>
+                    <td>
+                        <img style="width: 30px;" src="produtox.png"/>
+                    </td>
+                    <td>Produto X</td>
+                    <td>R$ 1.000,00</td>
+                </tr>
+            </table>
+        </ui:define>
+    </ui:composition>
+</html>

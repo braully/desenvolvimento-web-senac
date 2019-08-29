@@ -25,6 +25,8 @@ public class AplicacaoWeb implements ServletContextAware {
     public ServletRegistrationBean servletRegistrationBean() {
         FacesServlet servlet = new FacesServlet();
         return new ServletRegistrationBean(servlet, "*.xhtml");
+//        ServletRegistrationBean reg = new ServletRegistrationBean(servlet, "*.senac");
+//        return reg;
     }
 
     @Bean
@@ -36,6 +38,7 @@ public class AplicacaoWeb implements ServletContextAware {
     @Override
     public void setServletContext(ServletContext servletContext) {
         servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
+        //servletContext.setInitParameter("javax.faces.DEFAULT_SUFFIX", ".html");
     }
 
 }
