@@ -11,17 +11,61 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.context.ServletContextAware;
 
 /**
  *
  * @author braully
  */
+@EnableWebSecurity
 @SpringBootApplication
-public class AplicacaoWeb implements ServletContextAware {
+public class AplicacaoWeb extends WebSecurityConfigurerAdapter implements ServletContextAware {
 
     public static void main(String... args) {
         SpringApplication.run(AplicacaoWeb.class, args);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        UserDetails user = User.withUsername("usuario")
+                .password(passwordEncoder().encode("123"))
+                .roles("estagiario").build();
+
+        UserDetails admin = User.withUsername("sky")
+                .password(passwordEncoder().encode("net"))
+                .roles("fodão", "fodãoSPlus").build();
+
+        return new InMemoryUserDetailsManager(user, admin);
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/login*").permitAll()
+                .antMatchers("/principal.xhtml").permitAll()
+                .antMatchers("/todas-solicitacoes").hasRole("fodão")
+                .anyRequest().authenticated().and()
+                .formLogin()
+                .loginPage("/login.html")
+                .loginProcessingUrl("/login")
+                .permitAll().and()
+                .logout().permitAll();
     }
 
     @Bean
