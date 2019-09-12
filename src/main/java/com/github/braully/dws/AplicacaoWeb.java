@@ -1,9 +1,11 @@
 package com.github.braully.dws;
 
 import com.sun.faces.config.ConfigureListener;
+import java.util.Map;
 import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
 import javax.sql.DataSource;
+import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -92,5 +94,16 @@ public class AplicacaoWeb extends WebSecurityConfigurerAdapter implements Servle
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource datasource() {
         return DataSourceBuilder.create().build();
+    }
+
+    @Bean
+    public static CustomScopeConfigurer viewScope() {
+        CustomScopeConfigurer configurer = new CustomScopeConfigurer();
+
+        configurer.setScopes(
+                Map.of("view", new ViewScope())
+        );
+        
+        return configurer;
     }
 }
