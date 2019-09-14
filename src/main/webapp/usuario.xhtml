@@ -2,26 +2,35 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="/principal.xhtml">
         <ui:define name="titulo">Usuario</ui:define>
 
        	<ui:define name="conteudo">
             <h:form>
+                <h:messages style="list-style-type: none;"
+                            infoClass="alert alert-success" 
+                            errorClass="alert alert-danger"
+                            showSummary="true" />
 
                 <div class="form-group">
                     <label>Login</label>
-                    <h:inputText required="true" class="form-control" value="#{usuarioMB.usuario.login}" />
+                    <h:inputText class="form-control"
+                                 validatorMessage="O campo Login é obrigatorio"
+                                 value="#{usuarioMB.usuario.login}">
+                        <f:validateRequired />
+                    </h:inputText>
                 </div>
-
                 <div class="form-group">
                     <label>Senha</label>
-                    <h:inputSecret class="form-control" value="#{usuarioMB.usuario.senha}" />
+                    <h:inputSecret class="form-control" 
+                                   value="#{usuarioMB.usuario.senha}" />
                 </div>
 
-                <button class="btn btn-outline-dark" 
-                        action="#{usuarioMB.salvarUsuario()}"
-                        jsf="h:commandButton" value="Salvar">Salvar</button>            
+                <h:commandButton class="btn btn-outline-dark" 
+                                 action="#{usuarioMB.salvarUsuario()}"
+                                 value="Salvar"/>            
             </h:form>
         </ui:define>
     </ui:composition>
