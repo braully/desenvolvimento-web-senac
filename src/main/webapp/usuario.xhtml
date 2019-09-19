@@ -31,16 +31,15 @@
                 <div class="form-group">
                     <label>Grupo</label>
 
-                    <ui:repeat value="#{usuarioMB.listaGrupos}" 
-                               var="grp">
-                        <br />
-                        <input type="checkbox" 
-                               tooltip="#{grp.descricao}" 
-                               value="#{usuarioMB.gruposSelecionados[grp]}"
-                               jsfc="h:selectBooleanCheckbox"
-                               /> #{grp.grupo}
-                    </ui:repeat>
+                    <select multiple="multiple" 
+                            value="#{usuarioMB.gruposSelecionados}"
+                            jsfc="h:selectManyListbox"
+                            class="form-control">
+                        <f:selectItems value="#{usuarioMB.listaGrupos}" 
+                                       var="grp" itemValue="#{grp.id}" 
+                                       itemLabel="#{grp.grupo}" />
 
+                    </select>
 
                 </div>
 
