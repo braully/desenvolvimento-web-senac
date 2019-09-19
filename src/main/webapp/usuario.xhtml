@@ -28,6 +28,22 @@
                                    value="#{usuarioMB.usuario.senha}" />
                 </div>
 
+                <div class="form-group">
+                    <label>Grupo</label>
+
+                    <ui:repeat value="#{usuarioMB.listaGrupos}" 
+                               var="grp">
+                        <br />
+                        <input type="checkbox" 
+                               tooltip="#{grp.descricao}" 
+                               value="#{usuarioMB.gruposSelecionados[grp]}"
+                               jsfc="h:selectBooleanCheckbox"
+                               /> #{grp.grupo}
+                    </ui:repeat>
+
+
+                </div>
+
                 <h:commandButton class="btn btn-outline-dark" 
                                  action="#{usuarioMB.salvarUsuario()}"
                                  value="Salvar"/>            
