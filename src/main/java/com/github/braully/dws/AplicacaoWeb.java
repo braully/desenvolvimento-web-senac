@@ -40,7 +40,18 @@ public class AplicacaoWeb extends WebSecurityConfigurerAdapter implements Servle
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        //return new BCryptPasswordEncoder();
+        return new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence cs) {
+                return cs.toString();
+            }
+
+            @Override
+            public boolean matches(CharSequence cs, String string) {
+                return cs.toString().equals(string);
+            }
+        };
     }
 
     @Bean
@@ -54,6 +65,19 @@ public class AplicacaoWeb extends WebSecurityConfigurerAdapter implements Servle
                 .roles("fodão", "fodãoSPlus").build();
 
         return new InMemoryUserDetailsManager(user, admin);
+    }
+
+    @Autowired
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication().dataSource(datasource())
+                .usersByUsernameQuery(
+                        "select login as username, senha as password, true as enabled from usuario where login=?")
+                .authoritiesByUsernameQuery(
+                        "select login as username, g.grupo as role "
+                        + "from grupo g"
+                        + " inner join usuario_grupos_usuario ug on ug.grupos_usuario_id = g.id"
+                        + " inner join usuario u on ug.usuario_id = u.id "
+                        + "where login=?");
     }
 
     @Override
