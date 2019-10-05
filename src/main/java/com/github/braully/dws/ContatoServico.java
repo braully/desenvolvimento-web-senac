@@ -1,5 +1,7 @@
 package com.github.braully.dws;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -68,5 +70,11 @@ public class ContatoServico {
                 + "    </body>\n"
                 + "</html>";
         return html;
+    }
+
+    @RequestMapping(value = "/contato/todos-ws")
+    @ResponseBody
+    public Iterable<SolicitacaoContato> todosContatos() {
+        return this.conexaoBanco.findAll();
     }
 }

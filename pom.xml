@@ -19,6 +19,11 @@
     </properties>
     
     <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-hibernate5</artifactId>
+        </dependency>
+       
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
