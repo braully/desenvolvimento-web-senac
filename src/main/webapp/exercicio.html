@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Mensagem</th>
+            </tr>
+
+            <script>
+                //https://www.w3schools.com/xml/ajax_xmlhttprequest_response.asp
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var tabela = document.getElementsByTagName("table")[0];
+                        var solconts = JSON.parse(this.responseText);
+                        for (var i = 0; i < solconts.length; i++) {
+                            var solcont = solconts[i];
+                            var row = "<tr>";
+                            row = row + "<td>" + solcont.id + "</td>";
+                            row = row + "<td>" + solcont.nome + "</td>";
+                            row = row + "<td>" + solcont.email + "</td>";
+                            row = row + "<td>" + solcont.duvida + "</td>";
+                            row = row + "</tr>";
+                            var tr = document.createElement("tr");
+                            tr.innerHTML = row;
+                            tabela.appendChild(tr);
+                        }
+                    }
+                }
+                ;
+                xhttp.open("GET", "/contato/todos-ws", true);
+                xhttp.send();
+            </script>
+        </table>
+    </body>
+</html>

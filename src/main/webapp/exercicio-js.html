@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" 
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">                
+        </script>
+    </head>
+    <body>
+        <h1>Exercicio JS</h1>
+        <div ng-app="app" ng-controller="cnt">
+            <table id="tabela" class="table table-bordered"> 
+                <tr ng-repeat="o in dados">
+                    <td>{{o.nome}}</td>
+                    <td>{{o.email}}</td>
+                    <td>{{o.duvida}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <script>
+            angular.module('app', []).controller('cnt', function ($scope, $http) {
+                $http.get("/contato/todos-ws").then(function (response) {
+                    $scope.dados = response.data;
+                });
+            });
+        </script>
+    </body>
+</html>
