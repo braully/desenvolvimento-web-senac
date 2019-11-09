@@ -3,15 +3,52 @@
 <html lang="pt-br"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-    
-    <f:view contentType="text/html" locale="pt" />
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-    <head>
-        <title>Hello</title>
-    </head>
+    <ui:define name="titulo">Necessidade do bairro</ui:define>
 
-    <body>
+    <ui:composition template="/principal.xhtml">
+        <ui:define name="conteudo">
+            <div class="form-group">
+                <label>Pais</label>
+                <select class="form-control" disabled="disabled">
+                    <option>Brasil</option>
+                </select>
+            </div>
 
-    </body>
+            <div class="form-row form-group">
+                <div class="col-4">
+                    <label>Estado</label>
+                    <select class="form-control">
+                        <option>GO</option>
+                    </select>
+                </div>
+
+                <div class="col-8">
+                    <label>Cidade</label>
+                    <select class="form-control">
+                        <option>Goiânia</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Bairro</label>
+                <select class="form-control">
+                    <option>Centro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Necessidade</label>
+                <select class="form-control">
+                    <option></option>
+                    <option>Mercearia</option>
+                    <option>Outros</option>
+                </select>
+            </div>
+        </ui:define>
+    </ui:composition>
+
 </html>
