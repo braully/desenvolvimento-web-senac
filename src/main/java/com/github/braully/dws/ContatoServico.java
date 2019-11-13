@@ -77,4 +77,16 @@ public class ContatoServico {
     public Iterable<SolicitacaoContato> todosContatos() {
         return this.conexaoBanco.findAll();
     }
+
+    @RequestMapping("/ws/cidade")
+    @ResponseBody
+    public List<Grupo> buscaCidades(@RequestParam Map<String, String> todosParametros) {
+        List<Grupo> grupos = new ArrayList<>();
+        String estado = todosParametros.get("estado");
+        
+        grupos.add(new Grupo("Goiânia"));
+        grupos.add(new Grupo("Aparecida de Goiânia"));
+
+        return grupos;
+    }
 }

@@ -27,6 +27,23 @@ public class Grupo {
     @Basic
     String descricao;
 
+    String nome;
+
+    public Grupo() {
+    }
+
+    public Grupo(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public Long getId() {
         return id;
     }

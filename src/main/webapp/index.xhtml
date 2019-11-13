@@ -20,23 +20,24 @@
             <div class="form-row form-group">
                 <div class="col-4">
                     <label>Estado</label>
-                    <select class="form-control">
+                    <select id="estado" class="form-control">
+                        <option>--</option>
                         <option>GO</option>
                     </select>
                 </div>
 
                 <div class="col-8">
                     <label>Cidade</label>
-                    <select class="form-control">
-                        <option>Goiânia</option>
+                    <select id="cidade" class="form-control">
+                        <option>--</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
                 <label>Bairro</label>
-                <select class="form-control">
-                    <option>Centro</option>
+                <select id="bairro" class="form-control">
+                    <option>--</option>
                 </select>
             </div>
 
@@ -48,6 +49,24 @@
                     <option>Outros</option>
                 </select>
             </div>
+
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+            <script>
+                $("#estado").change(
+                        function () {
+                            $.get("/ws/cidade", {estado: $("#estado").val()})
+                                    .done(function (cidades) {
+                                        $("#cidade").empty();
+                                        $("#cidade").append("<option>--</option>");
+                                        for (var i in cidades) {
+                                            $("#cidade").append(
+                                                    "<option>" + cidades[i].nome + "</option>"
+                                                    );
+                                        }
+                                    });
+                        });
+            </script>
         </ui:define>
     </ui:composition>
 
